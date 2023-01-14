@@ -101,7 +101,7 @@ i {
 /* GAME PROPER */
 .game-container {
     color: #242424;
-    padding-top:60px;
+    padding-top: 100px;
     font-family: "Permanent Marker", cursive;
     text-align: center;
     transition: all 0.3s ease ;

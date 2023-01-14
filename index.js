@@ -18,21 +18,8 @@ const winConditions = [
     [2, 4, 6]
 ];
 
-// -------->>> TO BE DELETED <<<--------
-// let player1 = prompt("Player 1, please enter your name:");
-// while (player1.trim() === '') {
-//     player1 = prompt("Player 1, please enter a valid name:");
-// }
-
-// let player2 = prompt("Player 2, please enter your name:");
-// while (player2.trim() === '') {
-//     player2 = prompt("Player 2, please enter a valid name:");
-// }
-// let currentPlayer = player1; // set the current player to player 1
-
 let options = ['', '', '', '', '', '', '', '', ''];
 
-// let currentPlayer = 'X';
 let running = false;
 let moveHistory = [];
 let currentMoveIndex = -1;
@@ -68,8 +55,6 @@ function initializeGame(){
     previousBtn.addEventListener('click', previousMove);
     statusText.innerText = `${currentPlayer}'s Turn`;
     running = true;
-    // nextBtn.disabled = true;
-    // previousBtn.disabled = true;
     nextBtn.style.display = 'none';
     previousBtn.style.display = 'none';
 }
@@ -144,9 +129,10 @@ function checkWinner() {
     // nextBtn.disabled = !roundWon && !options.includes('');
     // previousBtn.disabled = true;
 
-    if (running) {
-        currentMoveIndex++;
-    }
+    // ---> Delete unncessary
+    // if running) {
+    //     currentMoveIndex++;
+    // }
 }
   
 function restartGame(){
@@ -161,48 +147,57 @@ function restartGame(){
     statusText.innerText = `${currentPlayer}'s Turn`;
 }
   
-    
 function addMoveToHistory(){
-    moveHistory[currentMoveIndex] = {
-        options: [...options],
-        currentPlayer: currentPlayer
-    }
+    moveHistory.push({ 'options': options.slice(), 'player': currentPlayer });
+    currentMoveIndex = moveHistory.length - 1;
     console.log(moveHistory);
+    // console.log(currentMoveIndex);
 }
+    
+// function addMoveToHistory(){
+//     moveHistory[currentMoveIndex] = {
+//         options: [...options],
+//         player: currentPlayer
+//     }
+//     console.log(moveHistory);
+// }
 
 function nextMove(){
-    console.log(currentMoveIndex);
+    console.log(currentMoveIndex, 'Last Move');
     if (!running) {
+        nextBtn.removeEventListener('click', nextMove);
         alert('Please restart the game to continue.');
         return;
     }
+
+    currentMoveIndex += 1; 
         
-    if (currentMoveIndex + 1 >= moveHistory.length) {
+    if (currentMoveIndex >= moveHistory.length) {
+        nextBtn.removeEventListener('click', nextMove);
         alert('There is nothing to redo.');
         return;
     }
-
-    if(currentMoveIndex >= moveHistory.length - 1){
-        return;
-    }
     
-    currentMoveIndex++;
     const currentMove = moveHistory[currentMoveIndex];
     options = currentMove.options;
-    currentPlayer = currentMove.currentPlayer;
+    currentPlayer = currentMove.player;
     
     for(let i = 0; i < cells.length; i++){
         cells[i].textContent = options[i];
     }
     
     statusText.innerText = `${currentPlayer}'s Turn`;
-    nextBtn.disabled = currentMoveIndex === moveHistory.length - 1;
+
     previousBtn.disabled = false;
     running = true;
+    checkWinner();
+
+    console.log(currentMoveIndex);
+    console.log(currentMove);
+    console.log(options);
 }
       
 function previousMove() {
-    console.log(currentMoveIndex);
     if (currentMoveIndex <= 0) {
         previousBtn.disabled = true;
           return;
@@ -211,7 +206,7 @@ function previousMove() {
     currentMoveIndex--;
     const currentMove = moveHistory[currentMoveIndex];
     options = currentMove.options;
-    currentPlayer = currentMove.currentPlayer;
+    currentPlayer = currentMove.player;
       
     for (let i = 0; i < cells.length; i++) {
         cells[i].textContent = options[i];
@@ -221,6 +216,11 @@ function previousMove() {
     // previousBtn.disabled = currentMoveIndex === 0;
     nextBtn.disabled = false;
     running = true;
+    // changePlayer();
+
+    console.log(currentMoveIndex);
+    console.log(currentMove);
+    console.log(options);
 }
 
 cells.forEach(cell => {
