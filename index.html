@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Tic Tac Toe</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='./styles.css'>
+
+    <!-- GOOGLE FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Montserrat:wght@300&family=Titan+One&display=swap" rel="stylesheet">
+
+     <!-- FONT AWESOME -->
+     <script src="https://kit.fontawesome.com/8077b29d9a.js" crossorigin="anonymous"></script>
+    
+</head>
+<body>
+
+    <section class="intro-container">
+        <h1 class="intro-header"><span class="letter-t">T</span>ic<span class="letter-t">T</span>ac<span class="letter-t">T</span>oe</h1>
+
+        <span class="anthony">ANTHONY'S</span>
+
+        <div class="intro-btn-container">
+            <button class="intro-btn">PLAY</button>
+        </div>
+    </section>
+    
+    <main class="game-container blur">
+
+        <h1>Tic Tac Toe</h1>
+        <section class="cell-container">
+            <div cellIndex="0" class="cell"></div>
+            <div cellIndex="1" class="cell"></div>
+            <div cellIndex="2" class="cell"></div>
+            <div cellIndex="3" class="cell"></div>
+            <div cellIndex="4" class="cell"></div>
+            <div cellIndex="5" class="cell"></div>
+            <div cellIndex="6" class="cell"></div>
+            <div cellIndex="7" class="cell"></div>
+            <div cellIndex="8" class="cell"></div>
+        </section>
+        <h2 class="status-text"></h2>
+        
+        <div>
+            <i class="fa-solid fa-rotate-left previous-btn"></i>
+            <button class="restart-btn">Restart</button>
+            <i class="fa-solid fa-rotate-right next-btn"></i>
+        </div>
+    </main>
+
+    <footer id="footer">
+        <p id="footer-text">
+            © Copyright 2022 Powered by HTML, CSS, & JavaScript.
+        </p>
+    </footer>
+
+    <script src='./index.js'></script>
+    
+</body>
+</html>
